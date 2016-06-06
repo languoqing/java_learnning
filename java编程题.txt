@@ -1,0 +1,612 @@
+【程序30】 
+题目：有一个已经排好序的数组。现输入一个数，要求按原来的规律将它插入数组中。 
+//此程序不好，没有使用折半查找插入
+import java.util.*;
+public class lianxi30 {
+public static void main(String[] args) {
+int[] a = new int[]{1, 2, 6, 14, 25, 36, 37,55};
+int[] b = new int[a.length+1];
+int t1 =0, t2 = 0; 
+int i =0;
+Scanner s= new Scanner(System.in);
+System.out.print("请输入一个整数：");
+int num = s.nextInt();
+if(num >= a[a.length-1]) {
+b[b.length-1] = num;
+for(i=0; i<a.length; i++) {
+b[i] = a[i];
+}
+} else {
+for(i=0; i<a.length; i++) {
+if(num >= a[i]) {
+b[i] = a[i];
+} else { 
+b[i] = num;
+break;
+}
+}
+for(int j=i+1; j<b.length; j++) {
+b[j] = a[j-1];
+}
+}
+for (i = 0; i < b.length; i++) {
+System.out.print(b[i] + " ");
+}
+} 
+}
+【程序31】
+题目：将一个数组逆序输出。 
+import java.util.*;
+public class lianxi31 {
+public static void main(String[] args) {
+Scanner s = new Scanner(System.in);
+int a[] = new int[20];
+System.out.println("请输入多个正整数（输入-1表示结束）：");
+int i=0,j;
+do{
+a[i]=s.nextInt();
+i++;
+}while (a[i-1]!=-1);
+System.out.println("你输入的数组为：");
+for( j=0; j<i-1; j++) {
+System.out.print(a[j]+" ");
+}
+System.out.println("\n数组逆序输出为：");
+for( j=i-2; j>=0; j=j-1) {
+System.out.print(a[j]+" ");
+}
+}
+}
+【程序32】 
+题目：取一个整数a从右端开始的4～7位。 
+import java.util.*;
+public class lianxi32 {
+public static void main(String[] args) {
+Scanner s = new Scanner(System.in);
+System.out.print("请输入一个7位以上的正整数：");
+long a = s.nextLong();
+String ss = Long.toString(a);
+char[] ch = ss.toCharArray();
+int j=ch.length;
+if (j<7){System.out.println("输入错误！");}
+else {
+System.out.println("截取从右端开始的4～7位是："+ch[j-7]+ch[j-6]+ch[j-5]+ch[j-4]);
+}
+}
+} 
+【程序33】 
+题目：打印出杨辉三角形（要求打印出10行如下图） 
+1 
+1 1 
+1 2 1 
+1 3 3 1 
+1 4 6 4 1 
+1 5 10 10 5 1 
+…………
+public class lianxi33 {
+public static void main(String[] args) {
+int[][] a = new int[10][10];
+for(int i=0; i<10; i++) {
+a[i][i] = 1;
+a[i][0] = 1;
+}
+for(int i=2; i<10; i++) {
+for(int j=1; j<i; j++) {
+a[i][j] = a[i-1][j-1] + a[i-1][j];
+}
+}
+for(int i=0; i<10; i++) {
+for(int k=0; k<2*(10-i)-1; k++) {
+System.out.print(" ");
+}
+for(int j=0; j<=i; j++) {
+System.out.print(a[i][j] + " ");
+}
+System.out.println();
+}
+}
+}
+【程序34】 
+题目：输入3个数a,b,c，按大小顺序输出。 
+import java.util.Scanner;
+public class lianxi34 {
+public static void main(String[] args) {
+Scanner s = new Scanner(System.in);
+System.out.println("请输入3个整数：");
+int a = s.nextInt();
+int b = s.nextInt();
+int c = s.nextInt();
+if(a < b) {
+int t = a;
+a = b;
+b = t;
+}
+if(a < c) {
+int t = a;
+a = c;
+c = t;
+}
+if(b < c) {
+int t = b;
+b = c;
+c = t;
+}
+System.out.println("从大到小的顺序输出:");
+System.out.println(a + " " + b + " " + c);
+}
+} 
+【程序35】 
+题目：输入数组，最大的与第一个元素交换，最小的与最后一个元素交换，输出数组。 
+import java.util.*;
+public class lianxi35 {
+public static void main(String[] args) {
+int N = 8;
+int[] a = new int [N];
+Scanner s = new Scanner(System.in);
+int idx1 = 0, idx2 = 0;
+System.out.println("请输入8个整数：");
+for(int i=0; i<N; i++) {
+a[i] = s.nextInt();
+}
+System.out.println("你输入的数组为：");
+for(int i=0; i<N; i++) {
+System.out.print(a[i] + " ");
+}
+int max =a[0], min = a[0];
+for(int i=0; i<N; i++) {
+if(a[i] > max) {
+max = a[i];
+idx1 = i;
+} 
+if(a[i] < min) {
+min = a[i];
+idx2 = i;
+}
+} 
+if(idx1 != 0) {
+int temp = a[0];
+a[0] = a[idx1];
+a[idx1] = temp;
+}
+if(idx2 != N-1) {
+int temp = a[N-1];
+a[N-1] = a[idx2];
+a[idx2] = temp;
+}
+System.out.println("\n交换后的数组为：");
+for(int i=0; i<N; i++) {
+System.out.print(a[i] + " ");
+}
+}
+}
+【程序36】 
+题目：有n个整数，使其前面各数顺序向后移m个位置，最后m个数变成最前面的m个数 
+import java.util.Scanner;
+public class lianxi36 {
+public static void main(String[] args) {
+int N =10;
+int[] a = new int[N];
+Scanner s = new Scanner(System.in);
+System.out.println("请输入10个整数：");
+for(int i=0; i<N; i++) {
+a[i] = s.nextInt();
+}
+System.out.print("你输入的数组为：");
+for(int i=0; i<N; i++) {
+System.out.print(a[i] + " ");
+}
+System.out.print("\n请输入向后移动的位数：");
+int m = s.nextInt();
+int[] b = new int[m];
+for(int i=0; i<m; i++) {
+b[i] = a[N-m+i];
+}
+for(int i=N-1; i>=m; i--) {
+a[i] = a[i-m];
+}
+for(int i=0; i<m; i++) {
+a[i] = b[i];
+}
+System.out.print("位移后的数组是：");
+for(int i=0; i<N; i++) {
+System.out.print(a[i] + " ");
+}
+}
+}
+【程序37】 
+题目：有n个人围成一圈，顺序排号。从第一个人开始报数（从1到3报数），凡报到3的人退出圈子，问最后留下的是原来第几号的那位。 
+import java.util.Scanner;
+public class lianxi37 {
+public static void main(String[] args) {
+Scanner s = new Scanner(System.in);
+System.out.print("请输入排成一圈的人数：");
+int n = s.nextInt();
+boolean[] arr = new boolean[n];
+for(int i=0; i<arr.length; i++) {
+arr[i] = true;
+}
+int leftCount = n;
+int countNum = 0;
+int index = 0;
+while(leftCount > 1) {
+if(arr[index] == true) {
+countNum ++; 
+if(countNum == 3) {
+countNum =0;
+arr[index] = false;
+leftCount --;
+}
+}
+index ++;
+if(index == n) {
+index = 0;
+}
+}
+for(int i=0; i<n; i++) {
+if(arr[i] == true) {
+System.out.println("原排在第"+(i+1)+"位的人留下了。");
+}
+}
+}
+}
+【程序38】 
+题目：写一个函数，求一个字符串的长度，在main函数中输入字符串，并输出其长度。 
+
+import java.util.*;
+public class lianxi38 {
+public static void main(String[] args) {
+Scanner s = new Scanner(System.in);
+System.out.println("请输入一个字符串：");
+String str = s.nextLine();
+System.out.println("字符串的长度是："+str.length());
+}
+} 
+【程序39】 
+题目：编写一个函数，输入n为偶数时，调用函数求1/2+1/4+...+1/n,当输入n为奇数时，调用函数1/1+1/3+...+1/n(利用指针函数) 
+//没有利用指针函数
+import java.util.*;
+public class lianxi39 {
+public static void main(String[] args) {
+Scanner s = new Scanner(System.in);
+System.out.print("请输入一个正整数 n= ");
+int n = s.nextInt();
+System.out.println("相应数列的和为：" + sum(n));
+}
+public static double sum(int n) {
+double res = 0;
+if(n % 2 == 0) {
+for(int i=2; i<=n; i+=2) {
+res += (double)1 / i;
+} 
+} else {
+for(int i=1; i<=n; i+=2) {
+res += (double)1 / i ;
+}
+}
+return res;
+}
+} 
+【程序40】 
+题目：字符串排序。 
+public class lianxi40 {
+public static void main(String[] args) {
+int N=5;
+String temp = null;
+String[] s = new String[N];
+s[0] = "matter";
+s[1] = "state";
+s[2] = "solid";
+s[3] = "liquid";
+s[4] = "gas";
+for(int i=0; i<N; i++) {
+for(int j=i+1; j<N; j++) {
+if(compare(s[i], s[j]) == false) {
+temp = s[i];
+s[i] = s[j];
+s[j] = temp;
+}
+}
+}
+for(int i=0; i<N; i++) {
+System.out.println(s[i]);
+}
+}
+static boolean compare(String s1, String s2) {
+boolean result = true;
+for(int i=0; i<s1.length() && i<s2.length(); i++) {
+if(s1.charAt(i) > s2.charAt(i)) {
+result = false;
+break;
+} else if(s1.charAt(i) <s2.charAt(i)) {
+result = true;
+break;
+} else {
+if(s1.length() < s2.length()) {
+result = true;
+} else {
+result = false;
+}
+}
+}
+return result;
+}
+}
+【程序41】 
+题目：海滩上有一堆桃子，五只猴子来分。第一只猴子把这堆桃子凭据分为五份，多了一个，这只猴子把多的一个扔入海中，拿走了一份。第二只猴子把剩下的桃子又平均分成五份，又多了一个，它同样把多的一个扔入海中，拿走了一份，第三、第四、第五只猴子都是这样做的，问海滩上原来最少有多少个桃子？ 
+public class lianxi41 { 
+public static void main (String[] args) { 
+int i,m,j=0,k,count; 
+for(i=4;i<10000;i+=4) 
+{ count=0; 
+m=i; 
+for(k=0;k<5;k++) 
+{ 
+j=i/4*5+1; 
+i=j; 
+if(j%4==0) 
+count++; 
+else break; 
+} 
+i=m; 
+if(count==4) 
+{System.out.println("原有桃子 "+j+" 个"); 
+break;} 
+} 
+} 
+} 
+【程序42】 
+题目：809*??=800*??+9*??+1 其中??代表的两位数,8*??的结果为两位数，9*??的结果为3位数。求??代表的两位数，及809*??后的结果。 
+//题目错了！809x=800x+9x+1 这样的方程无解。去掉那个1就有解了。
+public class lianxi42 { 
+public static void main (String[] args) { 
+int a=809,b,i;
+for(i=10;i<13;i++)
+{b=i*a ;
+if(8*i<100&&9*i>=100)
+System.out.println ("809*"+i+"="+"800*"+i+"+"+"9*"+i+"="+b);}
+}
+} 
+【程序43】 
+题目：求0—7所能组成的奇数个数。 
+//组成1位数是4个。
+//组成2位数是7*4个。
+//组成3位数是7*8*4个。
+//组成4位数是7*8*8*4个。
+//......
+public class lianxi43 { 
+public static void main (String[] args) { 
+int sum=4;
+int j;
+System.out.println("组成1位数是 "+sum+" 个");
+sum=sum*7;
+System.out.println("组成2位数是 "+sum+" 个");
+for(j=3;j<=9;j++){
+sum=sum*8; 
+System.out.println("组成"+j+"位数是 "+sum+" 个");
+}
+}
+} 
+【程序44】 
+题目：一个偶数总能表示为两个素数之和。 
+//由于用除sqrt(n)的方法求出的素数不包括2和3，
+//因此在判断是否是素数程序中人为添加了一个3。
+import java.util.*;
+public class lianxi44 {
+public static void main(String[] args) {
+Scanner s = new Scanner(System.in);
+int n,i;
+do{
+System.out.print("请输入一个大于等于6的偶数：");
+n = s.nextInt();
+} while(n<6||n%2!=0); //判断输入是否是>=6偶数,不是,重新输入
+fun fc = new fun();
+for(i=2;i<=n/2;i++){
+if((fc.fun(i))==1&&(fc.fun(n-i)==1)) 
+{int j=n-i;
+System.out.println(n+" = "+i+" + "+j);
+} //输出所有可能的素数对
+}
+}
+}
+class fun{
+public int fun (int a) //判断是否是素数的函数
+{
+int i,flag=0;
+if(a==3){flag=1;return(flag);}
+for(i=2;i<=Math.sqrt(a);i++){
+if(a%i==0) {flag=0;break;}
+else flag=1;}
+return (flag) ;//不是素数,返回0,是素数,返回1
+}
+}
+//解法二
+import java.util.*;
+public class lianxi44 {
+public static void main(String[] args) {
+Scanner s = new Scanner(System.in);
+int n;
+do{
+System.out.print("请输入一个大于等于6的偶数：");
+n = s.nextInt();
+} while(n<6||n%2!=0); //判断输入是否是>=6偶数,不是,重新输入
+for(int i=3;i<=n/2;i+=2){
+if(fun(i)&&fun(n-i)) {
+System.out.println(n+" = "+i+" + "+(n-i));
+} //输出所有可能的素数对
+}
+}
+static boolean fun (int a){ //判断是否是素数的函数
+boolean flag=false;
+if(a==3){flag=true;return(flag);}
+for(int i=2;i<=Math.sqrt(a);i++){
+if(a%i==0) {flag=false;break;}
+else flag=true;}
+return (flag) ;
+}
+}
+【程序45】 
+题目：判断一个素数能被几个9整除 
+//题目错了吧？能被9整除的就不是素数了！所以改成整数了。
+import java.util.*;
+public class lianxi45 { 
+public static void main (String[] args) { 
+Scanner s = new Scanner(System.in);
+System.out.print("请输入一个整数：");
+int num = s.nextInt();
+int tmp = num;
+int count = 0; 
+for(int i = 0 ; tmp%9 == 0 ;){
+tmp = tmp/9;
+count ++;
+}
+System.out.println(num+" 能够被 "+count+" 个9整除。");
+}
+} 
+【程序46】 
+题目：两个字符串连接程序 
+import java.util.*;
+public class lianxi46 {
+public static void main(String[] args) {
+Scanner s = new Scanner(System.in);
+System.out.print("请输入一个字符串：");
+String str1 = s.nextLine();
+System.out.print("请再输入一个字符串：");
+String str2 = s.nextLine();
+String str = str1+str2;
+System.out.println("连接后的字符串是："+str);
+}
+} 
+【程序47】 
+题目：读取7个数（1—50）的整数值，每读取一个值，程序打印出该值个数的＊。 
+import java.util.*;
+public class lianxi47 {
+public static void main(String[] args) {
+Scanner s = new Scanner(System.in);
+int n=1,num;
+while(n<=7){
+do{
+System.out.print("请输入一个1--50之间的整数：");
+num= s.nextInt();
+}while(num<1||num>50);
+for(int i=1;i<=num;i++)
+{System.out.print("*");
+}
+System.out.println();
+n ++;
+}
+}
+} 
+【程序48】 
+题目：某个公司采用公用电话传递数据，数据是四位的整数，在传递过程中是加密的，加密规则如下：每位数字都加上5,然后用和除以10的余数代替该数字，再将第一位和第四位交换，第二位和第三位交换。 
+import java.util.*;
+public class lianxi48 { 
+public static void main(String args[]) { 
+Scanner s = new Scanner(System.in);
+int num=0,temp;
+do{
+System.out.print("请输入一个4位正整数：");
+num = s.nextInt();
+}while (num<1000||num>9999); 
+int a[]=new int[4]; 
+a[0] = num/1000; //取千位的数字 
+a[1] = (num/100); //取百位的数字 
+a[2] = (num/10); //取十位的数字 
+a[3] = num; //取个位的数字 
+for(int j=0;j<4;j++) 
+{ 
+a[j]+=5; 
+a[j]%=10; 
+} 
+for(int j=0;j<=1;j++) 
+{ 
+temp = a[j]; 
+a[j] = a[3-j]; 
+a[3-j] =temp; 
+} 
+System.out.print("加密后的数字为："); 
+for(int j=0;j<4;j++) 
+System.out.print(a[j]); 
+} 
+} 
+【程序49】 
+题目：计算字符串中子串出现的次数 
+import java.util.*;
+public class lianxi49 { 
+public static void main(String args[]){
+Scanner s = new Scanner(System.in);
+System.out.print("请输入字符串：");
+String str1 = s.nextLine();
+System.out.print("请输入子串：");
+String str2 = s.nextLine();
+int count=0; 
+if(str1.equals("")||str2.equals("")) 
+{ 
+System.out.println("你没有输入字符串或子串,无法比较!"); 
+System.exit(0); 
+} 
+else 
+{ 
+for(int i=0;i<=str1.length()-str2.length();i++) 
+{ 
+if(str2.equals(str1.substring(i, str2.length()+i))) 
+//这种比法有问题，会把"aaa"看成有2个"aa"子串。 
+count++; 
+} 
+System.out.println("子串在字符串中出现: "+count+" 次"); 
+} 
+}
+} 
+【程序50】 
+题目：有五个学生，每个学生有3门课的成绩，从键盘输入以上数据（包括学生号，姓名，三门课成绩），计算出平均成绩，把原有的数据和计算出的平均分数存放在磁盘文件 "stud "中。
+import java.io.*; 
+import java.util.*;
+public class lianxi50 { 
+public static void main(String[] args){ 
+Scanner ss = new Scanner(System.in);
+String [][] a = new String[5][6];
+for(int i=1; i<6; i++) {
+System.out.print("请输入第"+i+"个学生的学号：");
+a[i-1][0] = ss.nextLine();
+System.out.print("请输入第"+i+"个学生的姓名：");
+a[i-1][1] = ss.nextLine();
+for(int j=1; j<4; j++) {
+System.out.print("请输入该学生的第"+j+"个成绩：");
+a[i-1][j+1] = ss.nextLine();
+}
+System.out.println("\n");
+}
+//以下计算平均分
+float avg;
+int sum;
+for(int i=0; i<5; i++) {
+sum=0;
+for(int j=2; j<5; j++) {
+sum=sum+ Integer.parseInt(a[i][j]);
+}
+avg= (float)sum/3;
+a[i][5]=String.valueOf(avg);
+}
+//以下写磁盘文件 
+String s1; 
+try { 
+File f = new File("C:\\stud"); 
+if(f.exists()){ 
+System.out.println("文件存在"); 
+}else{ 
+System.out.println("文件不存在，正在创建文件"); 
+f.createNewFile();//不存在则创建 
+} 
+BufferedWriter output = new BufferedWriter(new FileWriter(f)); 
+for(int i=0; i<5; i++) {
+for(int j=0; j<6; j++) {
+s1=a[i][j]+"\r\n";
+output.write(s1); 
+}
+}
+output.close(); 
+System.out.println("数据已写入c盘文件stud中！");
+} catch (Exception e) { 
+e.printStackTrace(); 
+} 
+}
+}
