@@ -34,7 +34,7 @@ public class Yanghuisanjiang {
 		int [][] arry = new int [arg][arg];
 		
 		//遍历行数
-		for(int hang =0;hang <arg;hang++){
+		for(int hang =0;hang <=arg;hang++){
 			
 			//取行里面的元素
 			for(int yuansu=0;yuansu<=hang;yuansu++){

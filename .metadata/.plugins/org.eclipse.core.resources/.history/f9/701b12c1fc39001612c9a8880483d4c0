@@ -1,0 +1,5 @@
+package languoqing;
+
+public interface InAddMoney {
+
+}

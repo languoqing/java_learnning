@@ -1,0 +1,10 @@
+package languoqing;
+
+public class Manager extends Employee {
+
+	private String managerLever;
+	public Manager(){
+		super("321", 23, 2);
+	}
+
+}
